@@ -1,0 +1,51 @@
+<!--
+  ~ Copyright (c) 2020 Dimitrijs Fedotovs
+  ~ This code is licensed under MIT license
+  ~ (see LICENSE.txt for details)
+  -->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/main.xhtml">
+    <f:metadata>
+        <f:viewParam name="id" value="#{flagBean.id}"/>
+        <f:viewAction action="#{flagBean.find}"/>
+    </f:metadata>
+    <ui:define name="content">
+
+        <h:form id="edit">
+            <h2>Flag Edit</h2>
+            <h:panelGrid columns="3">
+
+                <h:outputLabel value="Id"/>
+                <h:inputText styleClass="inputField" id="flagId" readonly="true" value="#{flagBean.flag.id}"/>
+                <h:message for="flagId" class="login-message-field"/>
+
+                <h:outputLabel value="Country"/>
+                <h:inputText styleClass="inputField" id="country" value="#{flagBean.flag.name}"/>
+                <h:message for="country" class="login-message-field"/>
+
+                <h:outputLabel value="Capital"/>
+                <h:inputTextarea styleClass="inputField" id="capital" value="#{flagBean.flag.capital}"/>
+                <h:message for="capital" class="login-message-field"/>
+
+            </h:panelGrid>
+            <p>
+                <h:commandButton id="save" styleClass="save-btn small-btn" value="Save" action="#{flagBean.save}">
+                    <f:ajax execute="@form" render="@form"/>
+                </h:commandButton>
+                <h:commandButton styleClass="save-btn small-btn" value="Delete" action="#{flagBean.delete}"
+                                 disabled="#{empty flagBean.flag.id}"/>
+            </p>
+            <p>
+                <p:messages styleClass="login-info-field" globalOnly="true" closable="true"/>
+            </p>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
+</html>

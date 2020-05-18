@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:cc="http://java.sun.com/jsf/composite">
+
+<cc:interface>
+    <cc:attribute name="info" required="true" type="lv.tsi.javacourses.shipping.ships.model.PagingInfo"/>
+</cc:interface>
+
+<cc:implementation>
+    <h:link id="prevLinkBtn" styleClass="paging-buttons prev-btn #{cc.attrs.info.previousPage() eq cc.attrs.info.currentPage ? 'paging-btn-disable' : ''} "><f:param
+            name="page" value="#{cc.attrs.info.previousPage()}"/>prev</h:link>
+    <ui:repeat begin="1" end="#{cc.attrs.info.pageCount}" var="p" varStatus="ps">
+        <h:link id="numLinkBtn" styleClass="paging-buttons #{p eq cc.attrs.info.currentPage ? 'current-button' : ''}"><f:param
+                name="page" value="#{p}"/>#{p}</h:link>
+        <ui:fragment rendered="#{not ps.last}">-</ui:fragment>
+    </ui:repeat>
+    <h:link id="nextLinkBtn" styleClass="paging-buttons prev-btn #{cc.attrs.info.nextPage() eq cc.attrs.info.currentPage ? 'paging-btn-disable' : ''}"><f:param
+            name="page" value="#{cc.attrs.info.nextPage()}"/>next</h:link>
+</cc:implementation>
+
+</html>

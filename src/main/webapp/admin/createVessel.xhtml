@@ -1,0 +1,80 @@
+<!--
+  ~ Copyright (c) 2020 Dimitrijs Fedotovs
+  ~ This code is licensed under MIT license
+  ~ (see LICENSE.txt for details)
+  -->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+>
+
+<ui:composition template="/templates/main.xhtml">
+    <f:metadata>
+        <f:viewAction action="#{vesselBean.create}"/>
+    </f:metadata>
+    <ui:define name="content">
+        <h:form id="vesselForm">
+            <h1>Create Vessel</h1>
+            <h:panelGrid columns="3">
+
+                <h:outputLabel value="name"/>
+                <h:inputText styleClass="inputField" id="name" value="#{vesselBean.vessel.name}"/>
+                <h:message styleClass="login-message-field"   for="name"/>
+
+                <h:outputLabel   value="imo"/>
+                <h:inputText styleClass="inputField" id="imo" value="#{vesselBean.vessel.imo}"/>
+                <h:message styleClass="login-message-field"  for="imo"/>
+
+                <h:outputLabel   value="year"/>
+                <h:inputText styleClass="inputField" id="year" value="#{vesselBean.vessel.year}"/>
+                <h:message styleClass="login-message-field"  for="year"/>
+
+                <h:outputLabel  value="deadweight"/>
+                <h:inputText styleClass="inputField" id="deadweight" value="#{vesselBean.vessel.deadweight}"/>
+                <h:message styleClass="login-message-field"  for="deadweight"/>
+
+                <h:outputLabel   value="speed"/>
+                <h:inputText styleClass="inputField" id="speed" value="#{vesselBean.vessel.speed}"/>
+                <h:message styleClass="login-message-field"  for="speed"/>
+
+                <h:outputLabel  value="shipyard"/>
+                <h:selectOneMenu styleClass="inputField select-menu" id="shipyards" value="#{vesselBean.vessel.shipyard}" hideNoSelectionOption="true"
+                                 converter="omnifaces.SelectItemsIndexConverter">
+                    <f:selectItem itemValue="#{null}" itemLabel="Select shipyard" noSelectionOption="true"/>
+                    <f:selectItems value="#{vesselBean.shipyards}" var="shipyard" itemLabel="#{shipyard.name}"/>
+                </h:selectOneMenu>
+                <h:message styleClass="login-message-field"  for="shipyards"/>
+
+                <h:outputLabel value="flags"/>
+                <h:selectOneMenu styleClass="inputField select-menu"  id="flags" value="#{vesselBean.vessel.flag}" hideNoSelectionOption="true"
+                                 converter="omnifaces.SelectItemsIndexConverter">
+                    <f:selectItem itemValue="#{null}" itemLabel="Select flag" noSelectionOption="true"/>
+                    <f:selectItems value="#{vesselBean.flags}" var="flag" itemLabel="#{flag.name}"/>
+                </h:selectOneMenu>
+                <h:message styleClass="login-message-field"  for="flags"/>
+
+                <h:outputLabel value="type"/>
+                <h:selectOneMenu styleClass="inputField select-menu"  id="types" value="#{vesselBean.vessel.vesseltype}" hideNoSelectionOption="true"
+                                 converter="omnifaces.SelectItemsIndexConverter">
+                    <f:selectItem itemValue="#{null}" itemLabel="Select type" noSelectionOption="true"/>
+                    <f:selectItems value="#{vesselBean.type}" var="type" itemLabel="#{type.type}"/>
+                </h:selectOneMenu>
+                <h:message styleClass="login-message-field"  for="types"/>
+
+            </h:panelGrid>
+
+            <p>
+                <h:commandButton styleClass="save-btn" id="save" value="Save" action="#{vesselBean.save}">
+                    <f:ajax execute="@form" render="@form"/>
+                </h:commandButton>
+            </p>
+
+            <h:messages styleClass="login-info-field" globalOnly="true"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
+</html>

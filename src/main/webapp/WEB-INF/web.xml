@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2020 Dimitrijs Fedotovs
+  ~ This code is licensed under MIT license
+  ~ (see LICENSE.txt for details)
+  -->
+
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <context-param>
+        <param-name>javax.faces.CLIENT_WINDOW_MODE</param-name>
+        <param-value>url</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>javax.faces.ENABLE_WEBSOCKET_ENDPOINT</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <!-- override table and toolbar glyphicons by context param -->
+    <!-- custom glyphicons (i.e. font-awesome) -->
+    <!-- showcase shows default glyphicons -->
+
+<!--    <context-param>-->
+<!--        <param-name>org.butterfaces.glyhicon.refresh</param-name>-->
+<!--        <param-value>fa fa-refresh</param-value>-->
+<!--    </context-param>-->
+<!--    <context-param>-->
+<!--        <param-name>org.butterfaces.glyhicon.options</param-name>-->
+<!--        <param-value>fa fa-th</param-value>-->
+<!--    </context-param>-->
+<!--    <context-param>-->
+<!--        <param-name>org.butterfaces.glyhicon.sort.none</param-name>-->
+<!--        <param-value>fa fa-sort</param-value>-->
+<!--    </context-param>-->
+<!--    <context-param>-->
+<!--        <param-name>org.butterfaces.glyhicon.sort.ascending</param-name>-->
+<!--        <param-value>fa fa-sort-down</param-value>-->
+<!--    </context-param>-->
+<!--    <context-param>-->
+<!--        <param-name>org.butterfaces.glyhicon.sort.descending</param-name>-->
+<!--        <param-value>fa fa-sort-up</param-value>-->
+<!--    </context-param>-->
+
+    <!-- Shows waiting panel over regions that will be renderer by ajax request -->
+    <!-- Could be overridden by ajaxDisableRenderRegionsOnRequest component attribute -->
+    <!-- default is true -->
+
+<!--    <context-param>-->
+<!--        <param-name>org.butterfaces.ajaxDisableRenderRegionsOnRequest</param-name>-->
+<!--        <param-value>true</param-value>-->
+<!--    </context-param>-->
+
+    <context-param>
+        <param-name>primefaces.THEME</param-name>
+        <param-value>nova-light</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.CONFIG_FILES</param-name>
+        <param-value>/WEB-INF/pretty-config.xml</param-value>
+    </context-param>
+
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+        <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>index.xhtml</welcome-file>
+    </welcome-file-list>
+
+    <session-config>
+        <session-timeout>20</session-timeout>
+    </session-config>
+
+    <security-role>
+        <role-name>USER</role-name>
+    </security-role>
+    <security-role>
+        <role-name>MANAGER</role-name>
+    </security-role>
+    <security-role>
+        <role-name>ADMIN</role-name>
+    </security-role>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>user space</web-resource-name>
+            <url-pattern>/app/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>USER</role-name>
+            <role-name>MANAGER</role-name>
+            <role-name>ADMIN</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>manager space</web-resource-name>
+            <url-pattern>/manage/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>MANAGER</role-name>
+            <role-name>ADMIN</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>admin space</web-resource-name>
+            <url-pattern>/admin/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>ADMIN</role-name>
+        </auth-constraint>
+    </security-constraint>
+</web-app>

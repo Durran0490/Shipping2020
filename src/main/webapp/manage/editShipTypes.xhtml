@@ -1,0 +1,50 @@
+<!--
+  ~ Copyright (c) 2020 Dimitrijs Fedotovs
+  ~ This code is licensed under MIT license
+  ~ (see LICENSE.txt for details)
+  -->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/main.xhtml">
+    <f:metadata>
+        <f:viewParam name="id" value="#{vesselTypeBean.id}"/>
+        <f:viewAction action="#{vesselTypeBean.find}"/>
+    </f:metadata>
+    <ui:define name="content">
+
+        <h:form id="edit">
+            <h1>Type Edit</h1>
+            <h:panelGrid columns="3">
+                <h:outputLabel value="Id"/>
+                <h:inputText styleClass="inputField" id="typeID" readonly="true" value="#{vesselTypeBean.type.id}"/>
+                <h:message for="typeID" class="login-message-field"/>
+
+                <h:outputLabel value="Type"/>
+                <h:inputText styleClass="inputField" id="type" value="#{vesselTypeBean.type.type}"/>
+                <h:message for="type" class="login-message-field"/>
+
+                <h:outputLabel value="Description"/>
+                <h:inputTextarea styleClass="inputField" id="descriptions" value="#{vesselTypeBean.type.description}"/>
+                <h:message for="descriptions" class="login-message-field"/>
+
+            </h:panelGrid>
+            <p>
+                <h:commandButton id="save" styleClass="save-btn small-btn" value="Save" action="#{vesselTypeBean.save}">
+                    <f:ajax execute="@form" render="@form"/>
+                </h:commandButton>
+                <h:commandButton styleClass="save-btn small-btn" value="Delete" action="#{vesselTypeBean.delete}"
+                                 disabled="#{empty flagBean.flag.id}"/>
+            </p>
+            <p>
+                <p:messages styleClass="login-info-field" globalOnly="true"/>
+            </p>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
+</html>

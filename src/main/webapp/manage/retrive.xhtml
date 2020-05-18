@@ -1,0 +1,41 @@
+<!--
+  ~ Copyright (c) 2020 Dimitrijs Fedotovs
+  ~ This code is licensed under MIT license
+  ~ (see LICENSE.txt for details)
+  -->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="/templates/main.xhtml">
+    <ui:define name="content">
+        <h1>Ready to give</h1>
+        <h:form>
+            <h:dataTable value="#{bookingBean.readyToTake}" var="r">
+                <h:column>
+                    <f:facet name="header">Vessel Name</f:facet>
+                    #{r.vessel.name}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">IMO Number</f:facet>
+                    #{r.vessel.imo}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">User</f:facet>
+                    #{r.user.loginName}
+                </h:column>
+                <h:column>
+                    <h:commandLink styleClass="edit-btn #{r.status eq 'CLOSED' ? 'disable-btn' : ''}" value="TAKE"
+                                   action="#{bookingBean.take(r)}">
+                        <!--                        <f:ajax render="@this"/>-->
+                        <f:ajax render="@form"/>
+                    </h:commandLink>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
+</html>

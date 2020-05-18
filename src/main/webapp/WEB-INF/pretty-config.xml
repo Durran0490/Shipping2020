@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2020 Dimitrijs Fedotovs
+  ~ This code is licensed under MIT license
+  ~ (see LICENSE.txt for details)
+  -->
+
+<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
+                      http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
+
+    <url-mapping id="registration">
+        <pattern value="/registration"/>
+        <view-id value="/registration.xhtml"/>
+    </url-mapping>
+
+    <url-mapping id="login">
+        <pattern value="/login"/>
+        <view-id value="/login.xhtml"/>
+    </url-mapping>
+
+    <url-mapping id="index">
+        <pattern value="/index"/>
+        <view-id value="/index.xhtml"/>
+    </url-mapping>
+
+    <url-mapping id="indexApp">
+        <pattern value="/app/index"/>
+        <view-id value="/app/index.xhtml"/>
+    </url-mapping>
+
+    <url-mapping id="book">
+        <pattern value="/app/book"/>
+        <view-id value="/app/book.xhtml"/>
+    </url-mapping>
+
+    <url-mapping id="userBookings">
+        <pattern value="/app/myBookings"/>
+        <view-id value="/app/userBookings.xhtml"/>
+    </url-mapping>
+
+</pretty-config>
