@@ -24,7 +24,7 @@ public class FlagListBean implements Serializable {
     private static final int PAGE_SIZE = 14;
 
     public void init(){
-        var from = PAGE_SIZE * Math.max(pagingInfo.getCurrentPage() - 1, 0);
+        var from = pagingInfo.from(PAGE_SIZE);
         flags = flagDAO.selectFlagPage(from, PAGE_SIZE);
         var pageCount = (int)Math.ceil((double)flagDAO.selectFlagCount() / PAGE_SIZE);
         pagingInfo.setPageCount(pageCount);

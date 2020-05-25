@@ -10,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-
 import javax.annotation.PostConstruct;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -118,18 +117,18 @@ public class VesselBean implements Serializable {
         return null;
     }
 
-    public boolean checkVesselImage(){
-        if (this.vessel != null){
+    public boolean checkVesselImage() {
+        if (this.vessel != null) {
             return vessel.getCover() != null;
         }
         return false;
     }
 
-    public void reload(){
+    public void reload() {
         try {
             ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
             ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
-        }catch (IOException e){
+        } catch (IOException e) {
             log.error("Cannot reload part", e);
         }
     }

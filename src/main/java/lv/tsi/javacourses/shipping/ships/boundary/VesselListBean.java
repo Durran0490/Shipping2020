@@ -30,7 +30,7 @@ public class VesselListBean implements Serializable {
 
     public void init() {
         bookings = bookingDAO.findTakenBookings();
-        var from = PAGE_SIZE * Math.max(pagingInfo.getCurrentPage() - 1, 0);
+        var from = pagingInfo.from(PAGE_SIZE);
         vessels = vesselDAO.selectVesselsPage(from, PAGE_SIZE);
         var pageCount = (int) Math.ceil((double) vesselDAO.selectVesselsCount() / PAGE_SIZE);
         pagingInfo.setPageCount(pageCount);

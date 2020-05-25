@@ -22,7 +22,7 @@ public class ShipyardListBean implements Serializable {
     private static final int PAGE_SIZE = 14;
 
     public void init(){
-        var from = PAGE_SIZE * Math.max(pagingInfo.getCurrentPage() - 1, 0);
+        var from = pagingInfo.from(PAGE_SIZE);
         shipyards = shipyardDAO.selectShipyardPage(from, PAGE_SIZE);
         var pageCount = (int)Math.ceil((double)shipyardDAO.selectShipyardCount() / PAGE_SIZE);
         pagingInfo.setPageCount(pageCount);

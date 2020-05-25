@@ -40,12 +40,9 @@ public class ShipyardBean implements Serializable {
             shipyardDAO.delete(shipyard);
         } catch (Exception e) {
             log.error("Cannot delete shipyard " + shipyard.getId(), e);
-            FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Cannot delete", "Cannot delete")
-            );
+            MessagesHelper.addErrorMessage(null, "Cannot delete");
             return null;
         }
-
         return "success";
     }
 
@@ -60,7 +57,7 @@ public class ShipyardBean implements Serializable {
             }
         } catch (Exception e) {
             log.error("Cannot save shipyard " + shipyard.getId(), e);
-            MessagesHelper.addInfoMessage(null, "Cannot delete");
+            MessagesHelper.addErrorMessage(null, "Cannot save");
         }
     }
 

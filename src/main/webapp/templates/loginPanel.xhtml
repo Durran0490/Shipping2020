@@ -11,7 +11,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 <ui:composition>
-    <o:graphicImage styleClass="companyLabel" value="#{imagesBean.loadCompanyLogo()}" type="png"/>
+    <h:graphicImage styleClass="companyLabel" library="img" name="logo400x120.png"/>
     <div class="login-panel">
         <ui:fragment rendered="#{empty currentUser.user}">
             <h:link styleClass="loginLink firstLink" outcome="/app/index.xhtml">

@@ -1,3 +1,4 @@
+
 <!--
   ~ Copyright (c) 2020 Dimitrijs Fedotovs
   ~ This code is licensed under MIT license
@@ -31,7 +32,7 @@
             <div class="vessel-edit-panel">
                 <div class="vessel-image-panel">
                     <o:graphicImage id="grpImage" value="#{vesselBean.checkVesselImage() eq true ?
-                    fileAccessBean.loadFile(vesselBean.vessel.cover.id) : imagesBean.loadDefaultShipImage}"
+                    fileAccessBean.loadFile(vesselBean.vessel.cover.id) : fileAccessBean.loadDefaultShipImage}"
                                     width="250"/>
                     <p>
                         <o:inputFile id="image" value="#{vesselBean.coverPart}"/>

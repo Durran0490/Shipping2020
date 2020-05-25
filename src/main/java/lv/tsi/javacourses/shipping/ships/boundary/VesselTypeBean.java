@@ -41,9 +41,7 @@ public class VesselTypeBean implements Serializable {
             vesselTypeDAO.delete(type);
         } catch (Exception e) {
             log.error("Cannot delete author " + type.getId(), e);
-            FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Cannot delete", "Cannot delete")
-            );
+            MessagesHelper.addErrorMessage(null, "Cannot delete");
             return null;
         }
 
@@ -61,7 +59,7 @@ public class VesselTypeBean implements Serializable {
             }
         } catch (Exception e) {
             log.error("Cannot save shipyard " + type.getId(), e);
-            MessagesHelper.addInfoMessage(null, "Cannot delete");
+            MessagesHelper.addErrorMessage(null, "Cannot delete");
         }
     }
 

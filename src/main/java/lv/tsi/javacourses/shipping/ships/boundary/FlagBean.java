@@ -42,16 +42,14 @@ public class FlagBean implements Serializable {
             flagDAO.delete(flag);
         } catch (Exception e) {
             log.error("Cannot delete author " + flag.getId(), e);
-            FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Cannot delete", "Cannot delete")
-            );
+            MessagesHelper.addErrorMessage(null, "Cannot delete");
             return null;
         }
         return "success";
     }
 
     public void save() {
-        try {
+        try{
             if (flag.getId() == null) {
                 flagDAO.create(flag);
                 MessagesHelper.addInfoMessage(null, "Successfully Created ");
@@ -61,7 +59,7 @@ public class FlagBean implements Serializable {
             }
         } catch (Exception e) {
             log.error("Cannot save shipyard " + flag.getId(), e);
-            MessagesHelper.addInfoMessage(null, "Cannot delete");
+            MessagesHelper.addErrorMessage(null, "Cannot save");
         }
     }
 

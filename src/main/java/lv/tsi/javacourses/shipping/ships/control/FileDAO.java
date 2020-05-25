@@ -16,7 +16,7 @@ public class FileDAO {
     private EntityManager em;
 
     public FileEntity selectFileById(long id) {
-        log.info("selectFileById method called with ID {}",id);
+        log.debug("selectFileById method called with ID {}",id);
         return em.find(FileEntity.class, id);
     }
 

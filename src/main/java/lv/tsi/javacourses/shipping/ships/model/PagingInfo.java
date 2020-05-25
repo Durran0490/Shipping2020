@@ -4,6 +4,10 @@ public class PagingInfo {
     private int pageCount;
     private int currentPage = 1;
 
+    public int from(int pageSize){
+        return pageSize * Math.max(getCurrentPage() - 1, 0);
+    }
+
     public int previousPage(){
         return Math.max(getCurrentPage() - 1, 1);
     }

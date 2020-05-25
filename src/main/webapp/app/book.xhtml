@@ -14,7 +14,8 @@
         <h1>Order Vessel</h1>
         <div class="vessel-image-panel">
             <o:graphicImage id="grpImage" value="#{vesselBean.checkVesselImage() eq true ?
-            fileAccessBean.loadFile(vesselBean.vessel.cover.id) : imagesBean.loadDefaultShipImage}" width="250"/>
+                    fileAccessBean.loadFile(vesselBean.vessel.cover.id) : fileAccessBean.loadDefaultShipImage}"
+                            width="250"/>
         </div>
         <h:panelGrid columns="2">
             <h:outputLabel value="Vessel Name:"/>
@@ -38,5 +39,4 @@
         </h:form>
     </ui:define>
 </ui:composition>
-
 </html>
